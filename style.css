@@ -179,6 +179,34 @@ svg{
   color: var(--color-text);
 }
 
+/* Progress bars */
+.progress-wrapper{
+  height: 0;
+  width: 12px;
+  z-index: 9999;
+}
+
+.progress-bar-wrapper-left{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.progress-bar-wrapper-right{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.progress-bar{
+  height: 100vh;
+  width: 100%;
+  background-color: var(--color-pink);
+  transform-origin: top center;
+  transform: scaleY(1);
+}
+
+
 /* Fancy Decoration Part of Section */
 .section-title{
   position: relative;
@@ -273,4 +301,37 @@ svg{
   font-size: 32px;
   text-transform: uppercase;
   color: var(--color-text);
+}
+
+/* Other colors override */
+
+.blue-text{
+  color: var(--color-blue)
+}
+
+.blue-border{
+  border-color: var(--color-blue);
+}
+
+.blue-background{
+  background-color: var(--color-blue);
+}
+
+.green-text{
+  color: var(--color-green)
+}
+
+.green-border{
+  border-color: var(--color-green);
+}
+
+.green-background{
+  background-color: var(--color-green);
+} 
+
+/* Media Queries */
+@media (max-width: 968px){
+  .section{
+    width: 100%;
+  }
 }
