@@ -25,7 +25,7 @@ export default class Room {
     }
 
     setModel() {
-        this.actualRoom.children.forEach(child => {
+        this.actualRoom.children.forEach((child) => {
             child.castShadow = true;
             child.receiveShadow = true;
 
@@ -33,7 +33,7 @@ export default class Room {
                 child.children.forEach((groupchild) => {
                     groupchild.castShadow = true;
                     groupchild.receiveShadow = true;
-                })
+                });
             }
 
             if (child.name === "Aquarium") {
@@ -52,6 +52,25 @@ export default class Room {
                     map: this.resources.items.screen,
                 });
             }
+
+            if (child.name === "Mini_Floor") {
+                child.position.x = -0.289521;
+                child.position.z = 8.83572;
+            }
+
+            if (
+                child.name === "Mailbox" ||
+                child.name === "Lamp" ||
+                child.name === "FloorFirst" ||
+                child.name === "FloorSecond" ||
+                child.name === "FloorThird" ||
+                child.name === "Dirt" ||
+                child.name === "Flower1" ||
+                child.name === "Flower2"
+            ) {
+                child.scale.set(0, 0, 0);
+            }
+
         });
 
         const width = 0.5;
@@ -77,7 +96,7 @@ export default class Room {
 
     setAnimation() {
         this.mixer = new THREE.AnimationMixer(this.actualRoom);
-        this.swim = this.mixer.clipAction(this.room.animations[0])
+        this.swim = this.mixer.clipAction(this.room.animations[0]);
         this.swim.play();
     }
 
@@ -85,8 +104,8 @@ export default class Room {
         window.addEventListener("mousemove", (e) => {
             this.rotation =
                 ((e.clientX - window.innerWidth / 2) * 2) / window.innerWidth;
-            this.lerp.target = this.rotation * 0.1;
-        })
+            this.lerp.target = this.rotation * 0.05;
+        });
     }
 
     resize() {
@@ -94,7 +113,6 @@ export default class Room {
     }
 
     update() {
-
         this.lerp.current = GSAP.utils.interpolate(
             this.lerp.current,
             this.lerp.target,
