@@ -14,13 +14,24 @@ export default class World {
         this.canvas = this.experience.canvas;
         this.camera = this.experience.camera;
         this.resources = this.experience.resources;
+        this.theme = this.experience.theme;
 
         this.resources.on("ready", () => {
             this.environment = new Environment();
             this.room = new Room();
             this.floor = new Floor();
             this.controls = new Controls();
-        })
+        });
+
+        this.theme.on("switch", (theme) => {
+            this.switchTheme(theme);
+        });
+    }
+
+    switchTheme(theme) {
+        if (this.environment) {
+            this.environment.switchTheme(theme);
+        }
     }
 
     resize() {
