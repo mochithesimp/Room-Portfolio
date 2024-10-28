@@ -1,13 +1,15 @@
+import * as THREE from "three";
 import Experience from "../Experience.js";
-import Environment from "./Environment.js";
-
 
 import Room from "./Room.js";
 import Floor from "./Floor.js";
 import Controls from "./Controls.js";
+import Environment from "./Environment.js";
+import { EventEmitter } from "events";
 
-export default class World {
+export default class World extends EventEmitter {
     constructor() {
+        super();
         this.experience = new Experience();
         this.sizes = this.experience.sizes;
         this.scene = this.experience.scene;
@@ -20,12 +22,17 @@ export default class World {
             this.environment = new Environment();
             this.floor = new Floor();
             this.room = new Room();
-            this.controls = new Controls();
+            // this.controls = new Controls();
+            this.emit("worldready");
         });
 
         this.theme.on("switch", (theme) => {
             this.switchTheme(theme);
         });
+
+        // this.sizes.on("switchdevice", (device) => {
+        //     this.switchDevice(device);
+        // });
     }
 
     switchTheme(theme) {
@@ -34,9 +41,13 @@ export default class World {
         }
     }
 
-    resize() {
+    // switchDevice(device) {
+    //     if (this.controls) {
+    //         this.controls.switchDevice(device);
+    //     }
+    // }
 
-    }
+    resize() { }
 
     update() {
         if (this.room) {
@@ -46,5 +57,4 @@ export default class World {
             this.controls.update();
         }
     }
-
 }

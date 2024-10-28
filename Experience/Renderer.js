@@ -1,4 +1,4 @@
-import * as THREE from "three"
+import * as THREE from "three";
 import Experience from "./Experience.js";
 
 export default class Renderer {
@@ -16,7 +16,6 @@ export default class Renderer {
         this.renderer = new THREE.WebGLRenderer({
             canvas: this.canvas,
             antialias: true,
-
         });
 
         this.renderer.physicallyCorrectLights = true;
@@ -34,12 +33,10 @@ export default class Renderer {
         this.renderer.setPixelRatio(this.sizes.pixelRatio);
     }
 
-
     update() {
-        //this.renderer.setViewport(0, 0, this.sizes.width, this.sizes.height);
+        // this.renderer.setViewport(0, 0, this.sizes.width, this.sizes.height);
         this.renderer.render(this.scene, this.camera.orthographicCamera);
-
-        //Test Screen
+        // Second Screen
         // this.renderer.setScissorTest(true);
         // this.renderer.setViewport(
         //     this.sizes.width - this.sizes.width / 3,
@@ -55,9 +52,8 @@ export default class Renderer {
         //     this.sizes.height / 3
         // );
 
-        // this.renderer.render(this.scene, this.camera.perspectiveCamera)
+        // this.renderer.render(this.scene, this.camera.perspectiveCamera);
 
         // this.renderer.setScissorTest(false);
-
     }
 }
